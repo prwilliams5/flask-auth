@@ -1,18 +1,26 @@
-**Data Center Power Audit Web App**
+<h1>Data Center Power Usage Web App</h1>
 
-This application is for monitoring power usage of racks/cabinets in a co-location data center facility. It runs on Python, Flask, and a relational database with features such as:
+The current purpose of this application is for monitoring power usage in a data center facility. There are future plans to integrate many other systems to increase data center and network operations center efficiency, so this is just the start! If there are any ideas to improve or add functionality please reach out! So far, the application stack runs Python, Flask, and a relational database with features such as:
 
-- User AAA
 - Built-in scalability
-- Python SQL toolkit, SQLAlchemy
-- SQLlite database for testing, can upgrade to a stand-alone SQL server with minimal changes to code
+- Application and database security included
+- Easy to set up SQLlite3 database for testing with minimal code changes for more robust SQL solutions
+- Multiple database upgrade paths including PostgreSQL and MySQL
+- Python SQL toolkit, SQLAlchemy integration
+- User AAA
+- Individual user profile pages
 
-**Coming Soon!!**
-- Email support
-- Automated password recovery for users
-- Live user notifications
-- Individual user profile pages and avatars
-- Comment section for communicating with other users
-- Pagination
-- Full text search
-- Modern web design with CSS Bootstrap
+<h3>Future Plans!!</h3>
+
+- Email support with automated user password recovery
+- Live web notifications
+- Message board for communicating with other users
+- Pagination and Search Bar
+- Usage tracking for individual power circuits and PDUs
+- Monitoring analytics and metrics dashboards
+- Track, add, remove, and edit cabinets/racks
+- Expanded API capabilities
+- Modern front-end web design with React
+- "Getting Started" section in README
+
+**And Much More!!**
