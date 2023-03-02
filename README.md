@@ -16,11 +16,12 @@ The current purpose of this application is for monitoring power usage in a data 
 - Live web notifications
 - Message board for communicating with other users
 - Pagination and Search Bar
+- Error handling
 - Usage tracking for individual power circuits and PDUs
 - Monitoring analytics and metrics dashboards
 - Track, add, remove, and edit cabinets/racks
 - Expanded API capabilities
 - Modern front-end web design with React
-- "Getting Started" section in README
+- Documentation: "Getting Started" section in README
 
 **And Much More!!**
