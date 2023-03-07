@@ -1,9 +1,9 @@
-<h1>Data Center Power Usage Web App</h1>
+# Data Center Power Usage Web App
 
 The current purpose of this application is for monitoring power usage in a data center facility. There are future plans to integrate many other systems to increase data center and network operations center efficiency, so this is just the start! If there are any ideas to improve or add functionality please reach out! So far, the application stack runs Python, Flask, and a relational database with features such as:
 
 - Built-in scalability
-- Application and database security included
+- Application and database security
 - Easy to set up SQLlite3 database for testing with minimal code changes for more robust SQL solutions
 - Multiple database upgrade paths including PostgreSQL and MySQL
 - Python SQL toolkit, SQLAlchemy integration
@@ -11,7 +11,7 @@ The current purpose of this application is for monitoring power usage in a data 
 - User AAA
 - Individual user profile pages
 
-<h3>Future Plans!!</h3>
+## Future Plans!!
 
 - Email support with automated user password recovery
 - Live web notifications
