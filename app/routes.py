@@ -1,11 +1,10 @@
-from flask import render_template, flash, redirect, url_for, request
-from app import app, db
-from app.forms import LoginForm, RegistrationForm, EditProfileForm
-from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User
-from werkzeug.urls import url_parse
 from datetime import datetime
-from app.forms import EmptyForm
+from flask import render_template, flash, redirect, url_for, request
+from flask_login import current_user, login_user, logout_user, login_required
+from werkzeug.urls import url_parse
+from app import app, db
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, CommentForm
+from app.models import User, Comment
 
 
 @app.before_request
@@ -14,21 +13,41 @@ def before_request():
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    comments = [
-        {
-            'author': {'username': 'B1-C1'},
-            'body': 'Provisioned'
-        },
-        {
-            'author': {'username': 'A1-C1'},
-            'body': 'Needs Reclaim'
-        }
-    ]
-    return render_template('index.html', title='Home', comments=comments)
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = Comment(body=form.comment.data, author=current_user)
+        db.session.add(comment)
+        db.session.commit()
+        flash('Your comment is now live!')
+        return redirect(url_for('index'))
+    page = request.args.get('page', 1, type=int)
+    comments = current_user.followed_comments().paginate(
+        page=page, per_page=app.config['COMMENTS_PER_PAGE'], error_out=False)
+    next_url = url_for('index', page=comments.next_num) \
+        if comments.has_next else None
+    prev_url = url_for('index', page=comments.prev_num) \
+        if comments.has_prev else None
+    return render_template('index.html', title='Home', form=form,
+                           comments=comments.items, next_url=next_url,
+                           prev_url=prev_url)
+
+
+@app.route('/explore')
+@login_required
+def explore():
+    page = request.args.get('page', 1, type=int)
+    comments = Comment.query.order_by(Comment.timestamp.desc()).paginate(
+        page=page, per_page=app.config['COMMENTS_PER_PAGE'], error_out=False)
+    next_url = url_for('explore', page=comments.next_num) \
+        if comments.has_next else None
+    prev_url = url_for('explore', page=comments.prev_num) \
+        if comments.has_prev else None
+    return render_template('index.html', title='Explore', comments=comments.items,
+                           next_url=next_url, prev_url=prev_url)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -70,12 +89,16 @@ def register():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    comments = [
-        {'author': user, 'body': 'test 1'},
-        {'author': user, 'body': 'test 2'}
-    ]
+    page = request.args.get('page', 1, type=int)
+    comments = user.comments.order_by(Comment.timestamp.desc()).paginate(
+        page=page, per_page=app.config['COMMENTS_PER_PAGE'], error_out=False)
+    next_url = url_for('user', username=user.username, page=comments.next_num) \
+        if comments.has_next else None
+    prev_url = url_for('user', username=user.username, page=comments.prev_num) \
+        if comments.has_prev else None
     form = EmptyForm()
-    return render_template('user.html', user=user, comments=comments, form=form)
+    return render_template('user.html', user=user, comments=comments.items, form=form,
+                           next_url=next_url, prev_url=prev_url)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
@@ -129,7 +152,7 @@ def unfollow(username):
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))
-
+    
 
     # racks = [
     #     {  

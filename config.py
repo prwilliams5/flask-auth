@@ -1,7 +1,7 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-class Config():
+class Config(object):
     SECRET_KEY= os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
@@ -14,3 +14,4 @@ class Config():
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['prwilliams5@gmail.com']
+    COMMENTS_PER_PAGE = 2

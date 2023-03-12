@@ -3,6 +3,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextA
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Length
 from app.models import User
 
+
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -42,4 +43,8 @@ class EditProfileForm(FlaskForm):
                 raise(ValidationError('Please use a different username'))
             
 class EmptyForm(FlaskForm):
+    submit = SubmitField('Submit')
+    
+class CommentForm(FlaskForm):
+    comment = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')

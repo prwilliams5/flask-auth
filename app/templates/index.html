@@ -1,10 +1,27 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block content %}
     <h1>Hi, {{ current_user.username }}!</h1>
-     {% for comment in comments %}
-    <div>
-        <p>{{ comment.author.username }}: <b>{{ comment.body }}</b></p>
-    </div>
+    {% if form %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.comment.label }}<br>
+            {{ form.comment(cols=32, rows=4) }}<br>
+            {% for error in form.comment.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% endif %}
+    {% for comment in comments %}
+        {% include '_comment.html' %}
     {% endfor %}
+    {% if prev_url %}
+        <a href="{{ prev_url }}">Newer comments</a>
+    {% endif %}
+    {% if next_url %}
+        <a href="{{ next_url }}">Older comments</a>
+    {% endif %}
 {% endblock %}
