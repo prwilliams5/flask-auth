@@ -1,0 +1,82 @@
+2023-03-07 10:14:00,026 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:41]
+2023-04-03 09:14:48,175 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:71]
+2023-04-03 09:22:21,606 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:71]
+2023-04-03 09:24:54,873 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:71]
+2023-04-03 09:25:50,075 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:71]
+2023-04-03 09:35:43,697 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:71]
+2023-04-03 09:48:07,412 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:71]
+2023-04-03 09:52:43,765 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:71]
+2023-04-03 11:09:10,083 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:71]
+2023-04-03 11:13:07,539 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:71]
+2023-04-03 11:13:14,965 ERROR: Exception on /explore [GET] [in /Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/Users/pwilliams/projects/power/app/main/routes.py", line 47, in explore
+    page=page, per_page=current_app.config['POSTS_PER_PAGE'],
+KeyError: 'POSTS_PER_PAGE'
+2023-04-03 11:13:15,028 ERROR: Exception on /favicon.ico [GET] [in /Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1788, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1770, in raise_routing_exception
+    raise request.routing_exception  # type: ignore
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/ctx.py", line 351, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 624, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1669, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1609, in handle_http_exception
+    return self.ensure_sync(handler)(e)
+  File "/Users/pwilliams/projects/power/app/errors/handlers.py", line 8, in not_found_error
+    return render_template('errors/404.html'), 404
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/templating.py", line 146, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/templating.py", line 62, in get_source
+    return self._get_source_fast(environment, template)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/templating.py", line 98, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: errors/404.html
+2023-04-03 11:13:16,370 ERROR: Exception on /explore [GET] [in /Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/Users/pwilliams/projects/power/app/main/routes.py", line 47, in explore
+    page=page, per_page=current_app.config['POSTS_PER_PAGE'],
+KeyError: 'POSTS_PER_PAGE'

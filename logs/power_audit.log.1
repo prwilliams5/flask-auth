@@ -1,4 +1,4 @@
-2023-04-03 11:16:01,319 ERROR: Exception on /favicon.ico [GET] [in /Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py:1744]
+2023-04-03 11:13:16,398 ERROR: Exception on /favicon.ico [GET] [in /Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py:1744]
 Traceback (most recent call last):
   File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
     rv = self.dispatch_request()
@@ -40,15 +40,7 @@ Traceback (most recent call last):
   File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/templating.py", line 98, in _get_source_fast
     raise TemplateNotFound(template)
 jinja2.exceptions.TemplateNotFound: errors/404.html
-2023-04-03 14:48:44,395 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:71]
-2023-04-03 14:49:01,191 ERROR: Exception on / [POST] [in /Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py:1744]
-Traceback (most recent call last):
-  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3317, in add
-    state = attributes.instance_state(instance)
-AttributeError: 'str' object has no attribute '_sa_instance_state'
-
-The above exception was the direct cause of the following exception:
-
+2023-04-03 11:13:20,002 ERROR: Exception on / [GET] [in /Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py:1744]
 Traceback (most recent call last):
   File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 2528, in wsgi_app
     response = self.full_dispatch_request()
@@ -60,14 +52,10 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
   File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
     return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/pwilliams/projects/power/app/main/routes.py", line 25, in index
-    db.session.add(comment)
-  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/sqlalchemy/orm/scoping.py", line 361, in add
-    return self._proxied.add(instance, _warn=_warn)
-  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3319, in add
-    raise exc.UnmappedInstanceError(instance) from err
-sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.str' is not mapped
-2023-04-03 14:49:01,233 ERROR: Exception on /favicon.ico [GET] [in /Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py:1744]
+  File "/Users/pwilliams/projects/power/app/main/routes.py", line 31, in index
+    page=page, per_page=current_app.config['POSTS_PER_PAGE'],
+KeyError: 'POSTS_PER_PAGE'
+2023-04-03 11:13:20,047 ERROR: Exception on /favicon.ico [GET] [in /Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py:1744]
 Traceback (most recent call last):
   File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
     rv = self.dispatch_request()
@@ -109,4 +97,19 @@ Traceback (most recent call last):
   File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/templating.py", line 98, in _get_source_fast
     raise TemplateNotFound(template)
 jinja2.exceptions.TemplateNotFound: errors/404.html
-2023-04-03 14:57:18,487 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:71]
+2023-04-03 11:15:54,762 INFO: Power Audit Startup [in /Users/pwilliams/projects/power/app/__init__.py:71]
+2023-04-03 11:16:01,297 ERROR: Exception on / [GET] [in /Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/pwilliams/projects/power/venv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/Users/pwilliams/projects/power/app/main/routes.py", line 31, in index
+    page=page, per_page=current_app.config['POSTS_PER_PAGE'],
+KeyError: 'POSTS_PER_PAGE'
