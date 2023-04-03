@@ -37,4 +37,4 @@ nosetests.xml
 
 venv
 app.db
-power_audit.log*
+power.log*
