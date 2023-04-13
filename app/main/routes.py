@@ -23,7 +23,7 @@ def index():
         comment = Comment(body=form.comment.data, author=current_user)
         db.session.add(comment)
         db.session.commit()
-        flash('Your post is now live!')
+        flash('Comment posted!')
         return redirect(url_for('main.index'))
     page = request.args.get('page', 1, type=int)
     comments = current_user.followed_posts().paginate(
