@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Length
 from app.models import User
+from flask import request
 
 
 class EditProfileForm(FlaskForm):
@@ -20,11 +21,19 @@ class EditProfileForm(FlaskForm):
             if user is not None:
                 raise ValidationError('Please use a different username.')
 
-
 class EmptyForm(FlaskForm):
     submit = SubmitField('Submit')
-
 
 class CommentForm(FlaskForm):
     comment = TextAreaField('Say something', validators=[DataRequired()])
     submit = SubmitField('Submit')
+    
+class SearchForm(FlaskForm):
+    q = StringField('Search', validators=[DataRequired()])
+
+    def __init__(self, *args, **kwargs):
+        if 'formdata' not in kwargs:
+            kwargs['formadata'] = request.args
+        if 'meta' not in kwargs:
+            kwargs['meta'] = {'csrf': False}
+        super(SearchForm, self).__init__(*args, **kwargs)
