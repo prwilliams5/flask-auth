@@ -71,6 +71,14 @@ def user(username):
     form = EmptyForm()
     return render_template('user.html', user=user, comments=comments.items,
                            next_url=next_url, prev_url=prev_url, form=form)
+    
+    
+@bp.route('/user/<username>/popup')
+@login_required
+def user_popup(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    form = EmptyForm()
+    return render_template('user_popup.html', user=user, form=form)
 
 
 @bp.route('/edit_profile', methods=['GET', 'POST'])
