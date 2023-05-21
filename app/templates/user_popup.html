@@ -1,41 +1,31 @@
-<table class="table">
-    <tr>
-        <td width="64" style="border: 0px;"><img src="{{ user.avatar(64) }}"></td>
-        <td style="border: 0px;">
-            <p><a href="{{ url_for('main.user', username=user.username) }}">
-                {{ user.username }}
-            </a></p>
-            <small>
+{% block app_content %}
+    <table class="table table-hover">
+        <tr>
+            <td width="64" style="border: 0px; padding: 3px"></td>
+            <td style="border: 0px;">
+                <h3>{{ user.username }}</h3>
                 {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
                 {% if user.last_seen %}
-                <p>{{ 'Last seen on' }}: {{ moment(user.last_seen).format('lll') }}</p>
+                <p>Last seen on: {{ moment(user.last_seen).format('LLL') }}</p>
                 {% endif %}
+                <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
+                {% if user == current_user %}
+                {% elif not current_user.is_following(user) %}
                 <p>
-                    {{ '%(count)d followers', count=user.followers.count() }},
-                    {{ '%(count)d following', count=user.followed.count() }}
+                    <form action="{{ url_for('main.follow', username=user.username) }}" method="post">
+                        {{ form.hidden_tag() }}
+                        {{ form.submit(value='Follow', class_='btn btn-default') }}
+                    </form>
                 </p>
-                {% if user != current_user %}
-                    {% if not current_user.is_following(user) %}
-                    <p>
-                        <form action="{{ url_for('main.follow', username=user.username) }}"
-                              method="post">
-                            {{ form.hidden_tag() }}
-                            {{ form.submit(value=_('Follow'),
-                                           class_='btn btn-default btn-sm') }}
-                        </form>
-                    </p>
-                    {% else %}
-                    <p>
-                        <form action="{{ url_for('main.unfollow', username=user.username) }}"
-                              method="post">
-                            {{ form.hidden_tag() }}
-                            {{ form.submit(value=_('Unfollow'),
-                                           class_='btn btn-default btm-sm') }}
-                        </form>
-                    </p>
-                    {% endif %}
+                {% else %}
+                <p>
+                    <form action="{{ url_for('main.unfollow', username=user.username) }}" method="post">
+                        {{ form.hidden_tag() }}
+                        {{ form.submit(value='Unfollow', class_='btn btn-default') }}
+                    </form>
+                </p>
                 {% endif %}
-            </small>
-        </td>
-    </tr>
-</table>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

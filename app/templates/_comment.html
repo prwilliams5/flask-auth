@@ -7,18 +7,16 @@
         </td>
         <td>
             {% set user_link %}
-                <span>
+                <span class="user_popup">
                     <a href="{{ url_for('main.user', username=comment.author.username) }}">
                         {{ comment.author.username }}
                     </a>
                 </span>
             {% endset %}
-            <a href="{{ url_for('main.user', username=comment.author.username) }}">
-                {{ comment.author.username }}
-            </a>
-             - {{ moment(comment.timestamp).fromNow() }}:
+            {{ user_link + ' said ' + moment(comment.timestamp).fromNow() | safe }} 
             <br>
             <span id="comment{{ comment.id }}">{{ comment.body }}</span>
         </td>
     </tr>
 </table>
+

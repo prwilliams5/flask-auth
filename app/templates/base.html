@@ -62,18 +62,18 @@
     <script>
 
         $(function() {
-            var timer = null;
-            var xhr = null;
+            let timer = null;
+            let xhr = null;
             $('.user_popup').hover(
                 function(event) {
-                    // mouse in handler
-                    var elem = $(event.currentTarget);
+                    // mouse in event handler
+                    let elem = $(event.currentTarget);
                     timer = setTimeout(function() {
                         timer = null;
                         xhr = $.ajax(
                             '/user/' + elem.first().text().trim() + '/popup').done(
                                 function(data) {
-                                    xhr = null
+                                    xhr = null;
                                     elem.popover({
                                         trigger: 'manual',
                                         html: true,
@@ -83,12 +83,12 @@
                                     }).popover('show');
                                     flask_moment_render_all();
                                 }
-                            )
+                            );
                     }, 1000);
                 },
                 function(event) {
-                    // mouse out handler
-                    var elem = $(event.currentTarget);
+                    // mouse out event handler
+                    let elem = $(event.currentTarget);
                     if (timer) {
                         clearTimeout(timer);
                         timer = null;
@@ -101,8 +101,7 @@
                         elem.popover('destroy');
                     }
                 }
-            )
+            );
         });
-
     </script>
 {% endblock %}
